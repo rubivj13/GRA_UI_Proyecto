@@ -19,7 +19,7 @@
             Console.SetCursorPosition(40, 12);
             Console.WriteLine("(3) Salir");
             Console.SetCursorPosition(40, 13);
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Blue;
             var opcion = int.Parse(Console.ReadLine());
             switch (opcion)
             {
