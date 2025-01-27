@@ -43,25 +43,36 @@
     }
     private static void DibujarGrafica()
     {
-        int x = 100;
-        int y = 23;
+        int x = 100; 
+        int y = 23; 
+
         bool arriba = false;
         bool abajo = true;
         bool neutro = true;
-        int avanzar = 0;
+
+        int avanzar = 0; 
 
         Console.SetCursorPosition(55, 2);
         Console.WriteLine("Dibujar Gráfica");
 
-        for (int i = 0; i < 230; i++)
+        for (int i = 0; i < 250; i++)
         {
-            if (avanzar < 6 && !arriba && abajo && neutro)
+            if (avanzar < 6 && !arriba && abajo && neutro) 
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.SetCursorPosition(x--, y);
+                if (avanzar == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                }
+                if (i == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                }
                 Console.WriteLine("*");
                 avanzar++;
-                if (avanzar == 5)
+                
+                if (avanzar == 6)
                 {
                     abajo = false;
                     neutro = false;
@@ -70,26 +81,31 @@
                 }
                 System.Threading.Thread.Sleep(40);
             }
-            else if (avanzar < 15 && arriba && !abajo && !neutro)
+            else if (avanzar < 15 && arriba && !abajo && !neutro) // Segmento vertical hacia arriba (color azul oscuro)
             {
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.SetCursorPosition(x, y--);
                 Console.WriteLine("*");
                 avanzar++;
-                if (avanzar == 14)
+                if (avanzar == 15)
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     neutro = true;
                     avanzar = 0;
                 }
                 System.Threading.Thread.Sleep(40);
             }
-            if (avanzar < 6 && arriba && !abajo && neutro)
+            else if (avanzar < 6 && arriba && !abajo && neutro) // Segmento horizontal hacia la izquierda (color cian)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.SetCursorPosition(x--, y);
+                if (avanzar == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                }
                 Console.WriteLine("*");
                 avanzar++;
-                if (avanzar == 5)
+                if (avanzar == 6)
                 {
                     abajo = true;
                     neutro = false;
@@ -98,15 +114,14 @@
                 }
                 System.Threading.Thread.Sleep(40);
             }
-            else if (avanzar < 15 && !arriba && abajo && !neutro)
+            else if (avanzar < 15 && !arriba && abajo && !neutro) // Segmento vertical hacia abajo (color azul oscuro)
             {
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.SetCursorPosition(x, y++);
                 Console.WriteLine("*");
                 avanzar++;
-                if (avanzar == 14)
+                if (avanzar == 15)
                 {
-                    abajo = true;
                     neutro = true;
                     avanzar = 0;
                 }
@@ -119,6 +134,7 @@
         Console.ReadKey();
         Console.Clear();
     }
+
 
     private static void DibujarEspiral()
     {
