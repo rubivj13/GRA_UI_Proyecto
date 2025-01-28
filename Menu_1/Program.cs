@@ -43,21 +43,21 @@
     }
     private static void DibujarGrafica()
     {
-        int x = 100; 
-        int y = 23; 
+        int x = 100;
+        int y = 23;
 
         bool arriba = false;
         bool abajo = true;
         bool neutro = true;
 
-        int avanzar = 0; 
+        int avanzar = 0;
 
         Console.SetCursorPosition(55, 2);
         Console.WriteLine("Dibujar Gráfica");
 
-        for (int i = 0; i < 250; i++)
+        for (int i = 0; i < 258; i++)
         {
-            if (avanzar < 6 && !arriba && abajo && neutro) 
+            if (avanzar < 6 && !arriba && abajo && neutro)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.SetCursorPosition(x--, y);
@@ -71,7 +71,7 @@
                 }
                 Console.WriteLine("*");
                 avanzar++;
-                
+
                 if (avanzar == 6)
                 {
                     abajo = false;
@@ -81,7 +81,7 @@
                 }
                 System.Threading.Thread.Sleep(40);
             }
-            else if (avanzar < 15 && arriba && !abajo && !neutro) // Segmento vertical hacia arriba (color azul oscuro)
+            else if (avanzar < 15 && arriba && !abajo && !neutro)
             {
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.SetCursorPosition(x, y--);
@@ -95,7 +95,7 @@
                 }
                 System.Threading.Thread.Sleep(40);
             }
-            else if (avanzar < 6 && arriba && !abajo && neutro) // Segmento horizontal hacia la izquierda (color cian)
+            else if (avanzar < 6 && arriba && !abajo && neutro)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.SetCursorPosition(x--, y);
@@ -138,101 +138,92 @@
 
     private static void DibujarEspiral()
     {
-        int posX = 55;
-        int posY = 13;
-        Console.SetCursorPosition(posX, posY);
-        int contador = 0;
-        string direccion = "izquierda";
-        int horizontal = 4;
+        int x = 60;
+        int y = 13;
+        int horizontal = 5;
         int vertical = 2;
-        int colorActual = 1;
+        int pasos = 0;
+        bool derecha = false;
+        bool izquierda = true;
+        bool arriba = false;
+        bool abajo = false;
+        bool neutro = true;
 
-        for (int i = 1; i < 452; i++)
+
+        ConsoleColor[] colores = { ConsoleColor.Green, ConsoleColor.Yellow, ConsoleColor.Blue, ConsoleColor.Red, ConsoleColor.Cyan };
+
+        for (int i = 0; i < 461; i++)
         {
-            if (colorActual == 1)
+            if (izquierda && pasos < horizontal && neutro)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                colorActual = 2;
-            }
-            else if (colorActual == 2)
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                colorActual = 3;
-            }
-            else if (colorActual == 3)
-            {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                colorActual = 4;
-            }
-            else if (colorActual == 4)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                colorActual = 5;
-            }
-            else if (colorActual == 5)
-            {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                colorActual = 1;
-            }
-            if (direccion == "izquierda" && contador < horizontal)
-            {
+                Console.ForegroundColor = colores[i % colores.Length];
+                Console.SetCursorPosition(x--, y);
                 Console.WriteLine("*");
-                posX--;
-                Console.SetCursorPosition(posX, posY);
-                contador++;
-                System.Threading.Thread.Sleep(30);
-                if (contador == horizontal)
+                pasos++;
+                if (pasos == horizontal)
                 {
+                    pasos = 0;
                     horizontal += 5;
-                    direccion = "arriba";
-                    contador = 0;
+                    arriba = true;
+                    izquierda = false;
+                    neutro = false;
                 }
+                System.Threading.Thread.Sleep(40);
             }
-            else if (direccion == "arriba" && contador < vertical)
+            else if (arriba && pasos < vertical && !neutro)
             {
+                Console.ForegroundColor = colores[i % colores.Length];
+                Console.SetCursorPosition(x, y--);
                 Console.WriteLine("*");
-                posY--;
-                Console.SetCursorPosition(posX, posY);
-                contador++;
-                System.Threading.Thread.Sleep(30);
-                if (contador == vertical)
+                pasos++;
+                if (pasos == vertical)
                 {
+                    pasos = 0;
                     vertical += 2;
-                    direccion = "derecha";
-                    contador = 0;
+                    derecha = true;
+                    arriba = false;
+                    neutro = true;
                 }
+                System.Threading.Thread.Sleep(40);
             }
-            else if (direccion == "derecha" && contador < horizontal)
+            else if (derecha && pasos < horizontal && neutro)
             {
+                Console.ForegroundColor = colores[i % colores.Length];
+                Console.SetCursorPosition(x++, y);
                 Console.WriteLine("*");
-                posX++;
-                Console.SetCursorPosition(posX, posY);
-                contador++;
-                System.Threading.Thread.Sleep(30);
-                if (contador == horizontal)
+                pasos++;
+                if (pasos == horizontal)
                 {
+                    pasos = 0;
                     horizontal += 5;
-                    direccion = "abajo";
-                    contador = 0;
+                    abajo = true;
+                    derecha = false;
+                    neutro = false;
                 }
+                System.Threading.Thread.Sleep(40);
             }
-            else if (direccion == "abajo" && contador < vertical)
+            else if (abajo && pasos < vertical && !neutro)
             {
+                Console.ForegroundColor = colores[i % colores.Length];
+                Console.SetCursorPosition(x, y++);
                 Console.WriteLine("*");
-                posY++;
-                Console.SetCursorPosition(posX, posY);
-                contador++;
-                System.Threading.Thread.Sleep(30);
-                if (contador == vertical)
+                pasos++;
+                if (pasos == vertical)
                 {
-                    direccion = "izquierda";
+                    pasos = 0;
                     vertical += 2;
-                    contador = 0;
+                    izquierda = true;
+                    abajo = false;
+                    neutro = true;
                 }
+                System.Threading.Thread.Sleep(40);
             }
         }
-        Console.SetCursorPosition(35, 27);
-        Console.WriteLine("Presiona espacio para continuar");
+
+        Console.SetCursorPosition(45, 27);
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Listo!!! Presiona una tecla para continuar.");
+        Console.ResetColor();
         Console.ReadKey();
         Console.Clear();
     }
