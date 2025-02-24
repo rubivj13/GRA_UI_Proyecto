@@ -13,25 +13,32 @@
             Console.WriteLine("Selecciona una opción del menú\n");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(40, 10);
-            Console.WriteLine("(1) Dibujar grafica con *");
+            Console.WriteLine("(1)  Generar rectángulos con *");
             Console.SetCursorPosition(40, 11);
-            Console.WriteLine("(2) Dibujar espiral con *");
+            Console.WriteLine("(2) Dibujar  barras con *");
             Console.SetCursorPosition(40, 12);
-            Console.WriteLine("(3) Salir");
+            Console.WriteLine("(3) Dibujar espiral con *");
             Console.SetCursorPosition(40, 13);
+            Console.WriteLine("(4) Salir");
+            Console.SetCursorPosition(40, 14);
             Console.ForegroundColor = ConsoleColor.Blue;
             var opcion = int.Parse(Console.ReadLine());
+
             switch (opcion)
             {
                 case 1:
                     Console.Clear();
-                    DibujarGrafica();
+                    DibujarRectangulos();
                     break;
                 case 2:
                     Console.Clear();
-                    DibujarEspiral();
+                    DibujarGrafica();
                     break;
                 case 3:
+                    Console.Clear();
+                    DibujarEspiral();
+                    break;
+                case 4:
                     salir = true;
                     break;
                 default:
@@ -39,7 +46,11 @@
                     break;
             }
         }
+    }
 
+    private static void DibujarRectangulos()
+    {
+        
     }
     private static void DibujarGrafica()
     {
