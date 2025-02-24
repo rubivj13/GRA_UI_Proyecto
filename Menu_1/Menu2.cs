@@ -8,5 +8,9 @@ namespace Menu_1
 {
     internal class Menu2
     {
+        public void MostrarMenu2()
+        {
+            
+        }
     }
 }
