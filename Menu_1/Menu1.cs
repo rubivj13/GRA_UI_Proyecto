@@ -30,7 +30,7 @@ namespace Menu_1
                 Console.SetCursorPosition(40, 13);
                 Console.WriteLine("(4) Regresar al Menú Principal");
                 Console.SetCursorPosition(40, 14);
-                Console.WriteLine("(5) Salir");
+                Console.WriteLine("(5) Salir.");
                 Console.SetCursorPosition(40, 15);
                 Console.ForegroundColor = ConsoleColor.Blue;
                 var opcion = int.Parse(Console.ReadLine());
